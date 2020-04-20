@@ -1,0 +1,78 @@
+ {% extends 'base.html' %} {% block content %}
+
+<!--Card content-->
+	{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+<div class="table-wrapper-scroll-y">
+	<div class="card">
+        <div class="card-header" style="background-color:skyblue;text-align:center;">
+            <h3>Team  {{ request.user.username}}</h3>
+        </div>
+    </div>
+          
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">WID</th>
+                <th scope="col">Full </th>
+                <th scope="col">Name </th>
+                <th scope="col">Email </th>
+                <th scope="col">Phone </th>
+                <th scope="col">Level</th>
+                <th scope="col">Picture</th>
+                {% if request.user.is_superuser %}
+                <th scope="col">Action</th>
+                {% endif %}
+            </tr>
+        </thead>
+        {% for object in object_list %}
+        <tbody>
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ object.work_id }}</td>
+                <td>{{ object.first_name }}</td>
+                <td>{{object.last_name }}</td>
+                <td>{{ object.email}}</td>
+                <td>{{ object.phone }}</td>
+                <td>{{ object.level|capfirst}}</td>
+                <td><img width="30" src="{{ object.image.url}}" alt="{{ object.last_name }}'s image"></td>
+                {% if request.user.is_superuser %}
+                <td>
+                    <a data-toggle="tooltip" title="View" class="blue-text"><i class="fa fa-user"></i></a>
+                    <a data-toggle="tooltip" title="Edit" href="" title="edit" class="teal-text"><i class="fa fa-pencil"></i></a>
+                    <a data-toggle="tooltip" title="Delete" href="" class="red-text"><i class="fa fa-times"></i></a>
+                </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span>No employees available 
+                            <a href="{% url 'create_employee' %}">
+                            <i class="blue-text">
+                              Click here to create
+                            </i>
+                            </a>
+                          </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        
+    </table>
+</div>
+
+</div>
+<br> {% endblock %}

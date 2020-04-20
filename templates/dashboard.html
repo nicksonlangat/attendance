@@ -1,0 +1,277 @@
+{% load static %}
+{% load attendance_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Iplex Management</title>
+  <!-- FONT AWESOME KIT -->
+  <script src="https://kit.fontawesome.com/16475baae0.js" crossorigin="anonymous"></script>
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+  <!-- BOOTSTRAP4 CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+
+<body class="bg-light">
+
+  <section id="dashboard">
+    <div class="container-fluid">
+      <div class="dashboard-container row">
+        <!-- START SIDENAV -->
+        <div class="col-12 col-sm-12 col-md-4 col-lg-2 sidenav">
+          <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="">
+            <h4>Iplex Dashboard</h4>
+          </div>
+          <div class="sn-group">
+            <a href="{% url 'dashboard' %} " class="sn-link dash-home">
+              <i class="fas fa-tachometer-alt"></i>Dashboard
+            </a>
+            <a class="sn-link dash-home" href="" target="_blank">
+              <i class="fas fa-globe-asia"></i>Main Site
+            </a>
+          </div>
+          <div class="sn-group">
+            <h5>Today</h5>
+            <nav>
+              <a class="sn-link" href="{% url 'archive_today' %} ">
+                <i class="fa fa-file-pdf-o"></i>To pdf
+              </a>
+            </nav>
+          </div>
+          <div class="sn-group">
+            <h5>Attendance</h5>
+            <nav>
+              <a class="sn-link" href="{% url 'create_attendance' %}">
+                <i class="fas fa-user-plus"></i>Mark
+              </a>
+
+              <a href="{% url 'attendance_list' %} " class="sn-link">
+                <i class="fas fa-th-list"></i>List
+              </a>
+              <a href="{% url 'attendance_pdf' %}" class="sn-link">
+                <i class="fa fa-file-pdf-o"></i>Print
+              </a>
+            </nav>
+          </div>
+          <div class="sn-group">
+            <h5>Employee</h5>
+            <nav>
+              <a class="sn-link" href="{% url 'create_employee' %}">
+                <i class="fas fa-user-tie"></i>new employee
+              </a>
+              <a href="{% url 'employee_list' %}" class="sn-link">
+                <i class="fas fa-id-card-alt"></i>list</a>
+              <a href="{% url 'employee_pdf' %}" class="sn-link">
+                <i class="fa fa-file-pdf-o"></i>Print
+              </a>
+            </nav>
+          </div>
+          
+          <div class="sn-group">
+            <h5>departments</h5>
+            <nav>
+              <a class="sn-link" href="">
+                <i class="fas fa-plus"></i>departments
+              </a>
+              <a href="" class="sn-link">
+                <i class="fas fa-plus"></i>new department
+              </a>
+              <a href="" class="sn-link">
+                <i class="fas fa-plus"></i>work sessions
+              </a>
+ 
+            </nav>
+          </div>
+          <div class="sn-group">
+            <h5>Admin Options</h5>
+            <nav>
+              <a href="{% url 'logout' %} " class="sn-link">
+                <i class="fas fa-minus"></i>Logout
+              </a>
+              
+            </nav>
+          </div>
+        </div>
+        <!-- END OF SIDENAV -->
+
+        <!-- START DASHBOARD BODY -->
+        <div class="col-12 col-sm-12 col-md-8 col-lg-10 px-0 dashbody">
+          <!-- NAVIGATION TOP -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light shadow py-3 px-5">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <form id="searchForm" class="form-inline">
+                <input class="form-control" type="search" placeholder="Search for..." aria-label="Search">
+                <button id="searchBtn" class="btn lio-primary-bg my-2 my-sm-0" type="submit"><i
+                    class="fas fa-search"></i></button>
+              </form>
+              <div class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false"><i class="fas fa-user-circle fa-lg"></i></a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#"></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="">
+                     
+                    </a>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </nav>
+          <!-- END NAV TOP -->
+
+          <div id="dash-body-inner" class="container-fluid p-5">
+
+            {% block dashboard-body %}
+       <!--     <div class="col-lg-4 col-md-6 mb-4"> -->
+           <div class ='card' >
+                    <p class ='alert alert-info' id="demo"></p>
+                    </div >
+                    <br><br>
+            <!-- topstat row -->
+            <div class="row m-0 p-0">
+              <h3 class="mb-3">Dashboard</h3>
+              <div class="col-12 p-0">
+                <div class="topstat d-flex justify-content-between">
+                  <div class="statbox">
+                    <i class="fas fa-users fa-3x"></i>
+                    <div class="text">
+                      <p>Employees</p>
+                      <h3>{% total_employees %}</h3>
+                    </div>
+                  </div>
+                  <div class="statbox">
+                    <i class="fas fa-users fa-3x"></i>
+                    <div class="text">
+                      <p>Heads of departments</p>
+                      <h3>{% total_users %}</h3>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <!-- second row -->
+            <div id="second-row" class="row m-0 p-0">
+              <div class="col-12 mt-5 p-0 d-flex justify-content-between">
+                <div class="card">
+                  <div class="card-header">
+                    <h5>Upcoming Events</h5>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                      <span class="name">Seminar on Machine Learning</span>
+                      <span class="date">May 12</span>
+                      <span class="organizer">Telkom Kenya</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                      <span class="name">Official Branch Launch</span>
+                      <span class="date">August 26</span>
+                      <span class="organizer">CEO</span>
+                    </li>
+                    
+                  </ul>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h5>Notice Board</h5>
+                  </div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <h5 class="date">20/03/2020</h5>
+                      <h5>Business card collecting notice.</h5>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- end of second row -->
+
+            <!-- payment row -->
+            <div class="row m-0 p-0">
+              <h3 class="mt-5 mb-3">Staff Payment</h3>
+              <div class="col-12 p-0 d-flex justify-content-between">
+                <div class="unpaid card">
+                  <ul class="list-group list-group-flush">
+                    <li class="title list-group-item">
+                      <h5>unpaid</h5>
+                    </li>
+                    <li class="list-group-item">
+                      <input type="checkbox" name="paid"> Mpenda Kazi
+                    </li>
+                    <li class="list-group-item">
+                      <input type="checkbox" name="paid"> Mpenda Kazi
+                      
+                    </li>
+                    <li class="list-group-item">
+                      <input type="checkbox" name="paid"> Mpenda Kazi
+                    </li>
+                  </ul>
+                </div>
+                <div class="paid card">
+                  <ul class="list-group list-group-flush">
+                    <li class="title list-group-item">
+                      <h5>paid</h5>
+                    </li>
+                    <li class="list-group-item">Mpenda Kazi</li>
+                    <li class="list-group-item">Mpenda Kazi</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {% endblock dashboard-body %}
+
+          </div>
+          <!-- <footer id="footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 py-1">
+                  <p>&copy;copyright 2020, reserved by <em>pidevs</em></p>
+                </div>
+              </div>
+            </div>
+          </footer> -->
+        </div>
+        <!-- END DASHBOARD BODY -->
+      </div> <!-- dashboard container fluid -->
+
+    </div>
+  </section>
+   <script>
+
+    var today = new Date()
+    var curHr = today.getHours()
+
+    if (curHr >= 0 && curHr < 6) {
+        document.getElementById("demo").innerHTML = '{{request.user.username}},  What are you doing that early?';
+    } else if (curHr >= 6 && curHr <= 12) {
+        document.getElementById("demo").innerHTML = 'Good Morning, {{request.user.username}} ';
+    } else if (curHr >= 12 && curHr < 17) {
+        document.getElementById("demo").innerHTML = 'Good Afternoon,  {{request.user.username}}';
+    } else {
+        document.getElementById("demo").innerHTML = 'Good Evening,  {{request.user.username}}';
+    }
+
+</script>
+
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

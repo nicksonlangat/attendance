@@ -1,0 +1,86 @@
+ {% extends 'base.html' %} {% block content %}
+<h4>New employee</h4 >
+  <form method="post">{% csrf_token %}
+  <!-- Grid row -->
+  <div class="form-row">
+    <!-- Grid column -->
+    <div class="col-md-4">
+      <!-- Material input -->
+      <div class=" md-form form-group">
+        <i class="text-default fa fa-user prefix"></i>
+                                   {{ form.first_name }}
+        <label for="inputEmail4MD">{{ form.first_name.label }}</label>
+        <span style="color: red"> {{ form.first_name.errors }} </span>
+      </div>
+    </div>
+    <!-- Grid column -->
+        <!-- Grid column -->
+    <div class="col-md-4">
+      <!-- Material input -->
+      <div class=" md-form form-group">
+        <i class="text-default fa fa-user prefix"></i>
+                                   {{ form.last_name }}
+        <label for="inputEmail4MD">{{ form.last_name.label }}</label>
+        <span style="color: red"> {{ form.last_name.errors }} </span>
+      </div>
+    </div>
+    <!-- Grid column -->
+        <div class="col-md-4">
+      <!-- Material input -->
+      <div class="md-form form-group">
+        <i class="text-default fa fa-envelope prefix"></i>
+        {{ form.email }}
+        <label for="email">{{ form.email.label }}</label>
+        <span style="color: red">{{ form.email.errors }}</span>
+      </div>
+    </div>
+    <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-4">
+      <!-- Material input -->
+      <div class="md-form form-group">
+        <i class="text-default fa fa-envelope prefix"></i>
+        {{ form.phone }}
+        <label for="email">{{ form.phone.label }}</label>
+        <span style="color: red">{{ form.phone.errors }}</span>
+      </div>
+    </div>
+    <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-4">
+      <!-- Material input -->
+      <div class="md-form form-group">
+        <i class="text-default fa fa-envelope prefix"></i>
+        {{ form.level }}
+        <label for="email">{{ form.level.label }}</label>
+        <span style="color: red">{{ form.level.errors }}</span>
+      </div>
+    </div>
+    <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-4">
+      <!-- Material input -->
+      <div class="md-form form-group">
+        <i class="text-default fa fa-envelope prefix"></i>
+        {{ form.image }}
+        <label for="email">{{ form.image.label }}</label>
+        <span style="color: red">{{ form.image.errors }}</span>
+      </div>
+    </div>
+    <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-4">
+      <!-- Material input -->
+      <div class="md-form form-group">
+        <i class="text-default fa fa-envelope prefix"></i>
+        {{ form.work_id }}
+        <label for="email">{{ form.work_id.label }}</label>
+        <span style="color: red">{{ form.work_id.errors }}</span>
+      </div>
+    </div>
+    <!-- Grid column -->
+        </div>
+        <button type="submit" class="float-right btn btn-outline-info btn-md">Save</button>
+        </form >
+
+    {% endblock %}

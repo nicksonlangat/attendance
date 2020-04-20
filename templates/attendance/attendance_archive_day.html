@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<h6 class='' >{{day}}</h6>
+ <table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Team</th>
+            <th scope="col">Attendance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+        <tr>
+            <th scope="row">{{forloop.counter}} </th>
+            <td>{{ object.created|date:'Y-m-d'}} </td>
+            <td>{{ object.employee.first_name}} </td>
+            <td>{{ object.employee.first_name}} </td>
+
+            <td>{{ object.head_of_department}} </td>
+            <td>{{ object.attendance}}</td>
+            {%empty %} 
+            <td>
+                    <span>No records available 
+                            <a href="{% url 'create_attendance' %}">
+                            <i class="blue-text">
+                              Click here to create
+                            </i>
+                            </a>
+                          </span>
+                </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{%endblock %}

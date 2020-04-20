@@ -1,0 +1,83 @@
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <style type="text/css">
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        .card-header{
+            text-align: center;
+        }
+        .table{
+            border: 0.5px solid #ababab;
+            text-align: center;
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 5px;
+            table-layout:fixed;
+        }
+        .table tr th td{
+            white-space: nowrap;
+        }
+        .table th {
+            padding: 5px;
+            vertical-align: top;
+            background-color: #e8e8e8;
+        }
+        .table td {
+            padding: 5px;
+            vertical-align: top;
+            -pdf-keep-with-next: false;
+        }
+        .five {
+              width: 5%;
+            }
+        .twenty {
+              width: 20%;
+            }
+         .fifteen {
+              width: 15%;
+            }
+
+
+    </style>
+
+</head>
+<body>
+  <div class="card">
+        <div class="card-header">
+            <h3>Employee List.</h3>
+        </div>
+    </div>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+                <th scope="col">WID</th>
+                <th scope="col">Full </th>
+                <th scope="col">Name </th>
+                
+                <th scope="col">Phone </th>
+                
+                <th scope="col">Picture</th>        
+    </tr>
+  </thead>
+  <tbody>
+      {% for object in object_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ object.work_id }}</td>
+                <td>{{ object.first_name }}</td>
+                <td>{{object.last_name }}</td>
+                
+                <td>{{ object.phone }}</td>
+                
+                <td><img width="30" src="{{ object.image.url}}" alt="{{ object.last_name }}'s image"></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
