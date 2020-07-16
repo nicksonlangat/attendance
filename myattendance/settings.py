@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'attendance', 
-    # 'crispy_forms', 
+    'attendance', 
+    'crispy_forms', 
 ]
 
 MIDDLEWARE = [
@@ -125,8 +125,8 @@ if DEBUG:
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# LOGIN_REDIRECT_URL='dashboard'
-# LOGOUT_REDIRECT_URL ='dashboard' 
+LOGIN_REDIRECT_URL='dashboard'
+LOGOUT_REDIRECT_URL ='dashboard' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-# CRISPY_TEMPLATE_PACK ='bootstrap4' 
+CRISPY_TEMPLATE_PACK ='bootstrap4' 
