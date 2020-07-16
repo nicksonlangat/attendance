@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'f$2+7yk3g(0w5(^yqm+8jd*r+%-g=fmp+f76yq)firb%be6&i*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'attendance', 
-    'crispy_forms', 
+    # 'attendance', 
+    # 'crispy_forms', 
 ]
 
 MIDDLEWARE = [
@@ -120,9 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-LOGIN_REDIRECT_URL='dashboard'
-LOGOUT_REDIRECT_URL ='dashboard' 
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# LOGIN_REDIRECT_URL='dashboard'
+# LOGOUT_REDIRECT_URL ='dashboard' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-CRISPY_TEMPLATE_PACK ='bootstrap4' 
+# CRISPY_TEMPLATE_PACK ='bootstrap4' 
